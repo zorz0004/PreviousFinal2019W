@@ -13,3 +13,5 @@ const schema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Pizza', schema)
+
+Console.log("test")

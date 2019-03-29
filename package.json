@@ -1,0 +1,21 @@
+{
+  "name": "Final Project",
+  "version": "1.0.0",
+  "description": "Final Project",
+  "main": "app.js",
+  "scripts": {
+    "dev": "DEBUG=final* NODE_ENV=dev PORT=3030 nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Marcos & Joao",
+    "email": ""
+  },
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  }
+}

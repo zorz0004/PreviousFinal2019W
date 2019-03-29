@@ -36,10 +36,14 @@ const update = (overwrite = false) => async (req, res) => {
             req.params.id,
             req.sanitizeBody,
             {
-
-            }
-
-        )
+                new: true,
+                overwrite,
+                runValidators: true
+            })
+        if (!pizzas) throw new Error('Resource not found')
+        res.send({ data: course })
+    } catch (err) {
+        sendResourceNotFound(req, res)
     }
 }
 
@@ -51,6 +55,19 @@ router.delete('/api/:id', async (req,res) => {
 })
 
 //add function sendResourceNotFound 
+function sendResourceNotFound (req, res) {
+    console.error(err)
+    res.status(404).send({
+      error: [
+        {
+          status: 'Not Found',
+          code: '404',
+          title: 'Resource does nto exist',
+          description: `We could not find a pizza with id: ${req.params.id}`
+        }
+      ]
+    })
+  }
 
 
 module.exports = router

@@ -11,9 +11,11 @@ const schema = new mongoose.Schema({
     price: {type: Integer, default:0},
     deliveryCharge: {type: Integer, default:(schema.type==='delivery' ? 500 : 0)},
     tax: {type: Integer, default:0},
-    total: {type: Integer, default:0},
-    createdAt: {type:Date, default:Date.now()},
-    updatedAt: {type:Date, default:Date.now()}
+    total: {type: Integer, default:0}
+},{
+    timestamps: {
+        createdAt: 'created_at'
+    }
 })
 
 module.exports = mongoose.model('Order', schema)

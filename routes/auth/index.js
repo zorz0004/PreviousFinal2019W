@@ -42,4 +42,12 @@ router.get('/users/me', authorize, async (req, res) => {
     res.send({data: user})
   })
 
+  //update password
+  router.patch('/users/:id', async (req, res, next) =>{
+      const user = await User.findById(req.params.id)
+      user.password = req.sanitizedBody.password
+      await user.save()
+      res.send({data: user})
+  })
+
 module.exports = router

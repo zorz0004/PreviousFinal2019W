@@ -3,12 +3,12 @@ const Ingredient = require('../models/Ingredient')
 const express = require('express')
 const router = express.Router()
 
-router.get('/api'), async (req,res) => {
+router.get('/api/ingredients/:id'), async (req,res) => {
     const ingredients = await Ingredient.find()
     res.send({ data: ingredients })
 }
 
-router.post('/api/', sanitizeBody, async (req,res) => {
+router.post('/api/ingredients', sanitizeBody, async (req,res) => {
     let newIngredient = new Ingredient(req.sanitizeBody)
     try{
         await newIngredient.save()
@@ -18,7 +18,7 @@ router.post('/api/', sanitizeBody, async (req,res) => {
     }
 })
 
-router.get('/api/:id', async (req,res) => {
+router.get('/api/ingredients/:id', async (req,res) => {
     try{
         const ingredients = await Ingredient.findById(req.params.id)
         if(!ingredients)
@@ -46,10 +46,10 @@ const update = (overwrite = false) => async (req,res) => {
     }
 }
 
-router.put('/api/:id', sanitizeBody, update((overwrite = true)))
-router.patch('/api/:id', sanitizeBody, update((overwrite = false)))
+router.put('/api/ingredients/:id', sanitizeBody, update((overwrite = true)))
+router.patch('/api/ingredients/:id', sanitizeBody, update((overwrite = false)))
 
-router.delete('/api/:id', async (req,res) => {
+router.delete('/api/ingredients/:id', async (req,res) => {
     try{
         const ingredients = await Ingredient.findByIdAndRemove(req.params.id)
         if (!ingredients) throw new Error ('Resource not found')

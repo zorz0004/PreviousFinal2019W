@@ -4,12 +4,12 @@ const express = require('express')
 const router = express.Router()
 
 
-router.get('/api/', async (req,res) => {
+router.get('/api/pizzas', async (req,res) => {
     const pizzas = await Pizza.find()
     res.send({ data: pizzas })
 })
 
-router.post('/api/', sanitizeBody, async (req,res) => {
+router.post('/api/pizzas', sanitizeBody, async (req,res) => {
     let newPizza = new Pizza(req.sanitizeBody)
     try{
         await newPizza.save()
@@ -19,7 +19,7 @@ router.post('/api/', sanitizeBody, async (req,res) => {
     }   
 })
 
-router.get('/api/:id', async (req,res) => {
+router.get('/api/pizzas/:id', async (req,res) => {
     try{
         const pizzas = await Pizza.findById(req.params.id).populate('ingredients')
         if(!pizzas)
@@ -47,10 +47,10 @@ const update = (overwrite = false) => async (req, res) => {
     }
 }
 
-router.put('/api/:id', sanitizeBody, update((overwrite = true)))
-router.patch('/api/:id', sanitizeBody, update((overwrite = false)))
+router.put('/api/pizzas/:id', sanitizeBody, update((overwrite = true)))
+router.patch('/api/pizzas/:id', sanitizeBody, update((overwrite = false)))
 
-router.delete('/api/:id', async (req,res) => {
+router.delete('/api/pizzas:id', async (req,res) => {
     try {
         const pizzas = await Pizza.findByIdAndRemove(req.params.id)
         if (!pizzas) throw new Error ('Resource not found')

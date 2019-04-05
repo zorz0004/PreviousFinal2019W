@@ -3,7 +3,7 @@ const Ingredients = require('./Ingredient')
 
 const schema = new mongoose.Schema({
     name: {type:String, required:true, minlength:4, maxlength:64},
-    price: {type:Integer, required:false, min:1000, max:10000, default:1000},
+    price: {type:Number, required:false, min:1000, max:10000, default:1000},
     size: {type:String, enum:['small', 'medium', 'large', 'extra large'],
            required:false, default:'small'},
     isGlutenFree: {type:Boolean, required: false, default:false},

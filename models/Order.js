@@ -8,10 +8,16 @@ const schema = new mongoose.Schema({
     status: {type:String, enum:['draft', 'ordered', 'paid', 'delivered'], default: 'draft'},
     pizzas: {type: mongoose.Schema.Types.ObjectId, ref:'Pizza'},
     address: {type:String, required:(schema.type==='delivery' ? true : false)},
-    price: {type: Integer, default:0},
-    deliveryCharge: {type: Integer, default:(schema.type==='delivery' ? 500 : 0)},
-    tax: {type: Integer, default:0},
-    total: {type: Integer, default:0}
+    price: {type: Number, default:0},
+    //deliveryCharge: {type: Number, default:(schema.type==='delivery' ? 500 : 0)},
+    deliveryCharge: {
+        type: Number,
+        default: function(){
+            return this.type ==='delivery'? 500 : 0
+        }
+    },
+    tax: {type: Number, default:0},
+    total: {type: Number, default:0}
 },{
     timestamps: {
         createdAt: 'created_at'

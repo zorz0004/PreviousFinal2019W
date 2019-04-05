@@ -1,4 +1,4 @@
-//const sanitizeBody = require('../middleware/sanitizeBody')
+const sanitizeBody = require('../middleware/sanitizeBody')
 const Pizza = require('../models/Pizza')
 const express = require('express')
 const router = express.Router()
@@ -13,7 +13,7 @@ router.post('/api/', sanitizeBody, async (req,res) => {
     let newPizza = new Pizza(req.sanitizeBody)
     try{
         await newPizza.save()
-        res.atatus(201).send({ data: newPizza})
+        res.status(201).send({ data: newPizza })
     } catch (err) {
         next(err)
     }   
@@ -41,17 +41,23 @@ const update = (overwrite = false) => async (req, res) => {
                 runValidators: true
             })
         if (!pizzas) throw new Error('Resource not found')
-        res.send({ data: course })
+        res.send({ data: pizzas })
     } catch (err) {
         sendResourceNotFound(req, res)
     }
 }
 
 router.put('/api/:id', sanitizeBody, update((overwrite = true)))
-router.put('/api/:id', sanitizeBody, update((overwrite = false)))
+router.patch('/api/:id', sanitizeBody, update((overwrite = false)))
 
 router.delete('/api/:id', async (req,res) => {
-
+    try {
+        const pizzas = await Pizza.findByIdAndRemove(req.params.id)
+        if (!pizzas) throw new Error ('Resource not found')
+        res.send({ data: pizzas })
+    }catch (err) {
+        sendResourceNotFound(req,res)
+    }
 })
 
 //add function sendResourceNotFound 

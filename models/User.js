@@ -50,6 +50,11 @@ schema.pre('save', async function(next){
     next()
 })
 
+schema.post('findByIdAndUpdate', function(doc){
+    doc.save()
+    next()
+})
+
 const getAuthToken = schema.methods.generateAuthToken = function(){
     return jwt.sign({_id: this._id}, 'superSecureSecret')
 }

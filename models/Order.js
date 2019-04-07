@@ -24,4 +24,12 @@ const schema = new mongoose.Schema({
     }
 })
 
+
+schema.pre('save', async function(){
+    await this.populate('pizzas').execPopulate()
+    this.price = this.pizzas.reduce((acc, element) => acc+= element.price, 0)
+    this.tax = (this.price + this.deliveryCharge) * 0.13
+    this.total = this.price + this.deliveryCharge + this.tax
+})
+
 module.exports = mongoose.model('Order', schema)

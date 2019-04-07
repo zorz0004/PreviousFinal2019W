@@ -66,7 +66,7 @@ function sendResourceNotFound (req, res) {
         {
           status: 'Not Found',
           code: '404',
-          title: 'Resource does nto exist',
+          title: 'Resource does not exist',
           description: `We could not find a ingredient with id: ${req.params.id}`
         }
       ]

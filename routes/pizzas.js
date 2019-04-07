@@ -50,7 +50,7 @@ const update = (overwrite = false) => async (req, res) => {
 router.put('/api/pizzas/:id', sanitizeBody, update((overwrite = true)))
 router.patch('/api/pizzas/:id', sanitizeBody, update((overwrite = false)))
 
-router.delete('/api/pizzas:id', async (req,res) => {
+router.delete('/api/pizzas/:id', async (req,res) => {
     try {
         const pizzas = await Pizza.findByIdAndRemove(req.params.id)
         if (!pizzas) throw new Error ('Resource not found')
@@ -68,7 +68,7 @@ function sendResourceNotFound (req, res) {
         {
           status: 'Not Found',
           code: '404',
-          title: 'Resource does nto exist',
+          title: 'Resource does not exist',
           description: `We could not find a pizza with id: ${req.params.id}`
         }
       ]

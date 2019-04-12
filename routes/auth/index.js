@@ -43,11 +43,19 @@ router.get('/users/me', authorize, async (req, res) => {
   })
 
   //update password
-  router.patch('/users/:id', async (req, res, next) =>{
-      const user = await User.findById(req.params.id)
-      user.password = req.sanitizedBody.password
-      await user.save()
-      res.send({data: user})
+  router.patch('/users/:id', authorize,  async (req, res, next) =>{
+      try{
+        const user = await User.findByIdAndUpdate(req.params.id)
+        //user.password = req.sanitizedBody.password
+        await user.save()
+        res.send({data: user})
+      }
+      catch(err){
+          next(err)
+      }
   })
+
+  
+
 
 module.exports = router

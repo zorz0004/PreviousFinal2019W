@@ -1,14 +1,15 @@
 const sanitizeBody = require('../middleware/sanitizeBody')
 const Order = require('../models/Order')
+const authorize = require('../../middleware/auth')
 const express = require('express')
 const router = express.Router()
 
-router.get('/api/orders', async (req,res) => {
+router.get('/api/orders', authorize, async (req,res) => {
     const orders = await Order.find()
     res.send({ data: orders })
 })
 
-router.post('/api/orders', sanitizeBody, async (req,res) => {
+router.post('/api/orders', authorize, sanitizeBody, async (req,res) => {
     let newOrder = new Order(req.sanitizeBody)
     try{
         await newOrder.save()
@@ -18,7 +19,7 @@ router.post('/api/orders', sanitizeBody, async (req,res) => {
     }  
 })
 
-router.get('/api/orders/:id', async (req,res) => {
+router.get('/api/orders/:id', authorize, async (req,res) => {
     try{
         const orders = await Order.findById(req.params.id).populate('pizzas')
         if(!orders)
@@ -46,10 +47,10 @@ const update = (overwrite = false) => async (req, res) => {
     }
 }
 
-router.put('/api/orders/:id', sanitizeBody, update((overwrite = true)))
-router.patch('/api/orders/:id', sanitizeBody, update((overwrite = false)))
+router.put('/api/orders/:id', authorize, sanitizeBody, update((overwrite = true)))
+router.patch('/api/orders/:id', authorize, sanitizeBody, update((overwrite = false)))
 
-router.delete('/api/orders/:id', async (req,res) => {
+router.delete('/api/orders/:id', authorize, async (req,res) => {
     try {
         const orders = await Order.findByIdAndRemove(req.params.id)
         if (!orders) throw new Error ('Resource not found')

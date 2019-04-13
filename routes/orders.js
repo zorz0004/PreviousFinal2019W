@@ -1,6 +1,6 @@
 const sanitizeBody = require('../middleware/sanitizeBody')
 const Order = require('../models/Order')
-const authorize = require('../../middleware/auth')
+const authorize = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 

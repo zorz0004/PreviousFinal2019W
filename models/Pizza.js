@@ -26,4 +26,3 @@ schema.pre('save', async function(){
 
 module.exports = mongoose.model('Pizza', schema)
 
-Console.log("test")

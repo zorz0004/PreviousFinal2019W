@@ -4,10 +4,10 @@ const express = require('express')
 const router = express.Router()
 
 //router.get('/api/ingredients/:id'), async (req,res) => {
-router.get('/'), async (req,res) => {
+router.get('/', async (req,res) => {
     const ingredients = await Ingredient.find()
     res.send({ data: ingredients })
-}
+})
 
 //router.post('/api/ingredients', sanitizeBody, async (req,res) => {
 router.post('/', sanitizeBody, async (req,res, next) => {

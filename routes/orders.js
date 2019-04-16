@@ -10,7 +10,7 @@ router.get('/', authorize, async (req,res) => {
     res.send({ data: orders })
 })
 
-router.post('/', authorize, sanitizeBody, async (req,res) => {
+router.post('/', authorize, sanitizeBody, async (req,res, next) => {
     let newOrder = new Order(req.sanitizedBody)
     try{
         await newOrder.save()

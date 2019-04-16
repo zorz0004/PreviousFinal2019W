@@ -6,8 +6,8 @@ const schema = new mongoose.Schema({
     quantity: {type: Number, required:false, max:1000, default:10},
     isGlutenFree: {type:Boolean, required: false, default:false},
     imageUrl: {type:String, required:false, maxlength:1024},
-    categories: {type:String, enum:['meat', 'spicy', 'vegitarian', 'vegan', 'halal', 'kosher', 'cheeze', 'seasonings'],
-                 required: false}
+    categories: [{type:String, enum:['meat', 'spicy', 'vegitarian', 'vegan', 'halal', 'kosher', 'cheeze', 'seasonings'],
+                 required: false}]
 })
 
 module.exports = mongoose.model('Ingredient', schema)

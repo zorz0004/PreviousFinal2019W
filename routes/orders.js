@@ -4,6 +4,7 @@ const authorize = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 
+
 router.get('/', authorize, async (req,res) => {
     const orders = await Order.find()
     res.send({ data: orders })

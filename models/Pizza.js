@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Ingredients = require('./Ingredient')
+const Ingredients = require('./Ingredient').default
 
 const schema = new mongoose.Schema({
     name: {type:String, required:true, minlength:4, maxlength:64},

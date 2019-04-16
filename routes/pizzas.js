@@ -1,5 +1,5 @@
 const sanitizeBody = require('../middleware/sanitizeBody')
-const Pizza = require('../models/Pizza')
+const Pizza = require('../models/Pizza').default
 const express = require('express')
 const router = express.Router()
 

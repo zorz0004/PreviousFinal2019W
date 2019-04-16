@@ -1,20 +1,23 @@
 const sanitizeBody = require('../middleware/sanitizeBody')
-const Ingredient = require('../models/Ingredient')
+const Ingredient = require('../models/Ingredient')//.default
 const express = require('express')
 const router = express.Router()
 
-router.get('/api/ingredients/:id'), async (req,res) => {
+//router.get('/api/ingredients/:id'), async (req,res) => {
+router.get('/'), async (req,res) => {
     const ingredients = await Ingredient.find()
     res.send({ data: ingredients })
 }
 
-router.post('/api/ingredients', sanitizeBody, async (req,res) => {
-    let newIngredient = new Ingredient(req.sanitizeBody)
+//router.post('/api/ingredients', sanitizeBody, async (req,res) => {
+router.post('/', sanitizeBody, async (req,res, next) => {
+    let newIngredient = new Ingredient(req.sanitizedBody)
     try{
         await newIngredient.save()
         res.status(201).send({ data: newIngredient })
     } catch (err) {
         next(err)
+        //sendResourceNotFound(req, res)
     }
 })
 

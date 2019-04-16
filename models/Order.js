@@ -3,6 +3,7 @@ const User = require('./User')
 const Pizza = require('./Pizza')//.default
 
 //deliveryCharge: {type: Number, default:(schema.type==='delivery' ? 500 : 0)},
+
 //address: {type:String, required:(schema.type==='delivery' ? true : false)},
 
 const schema = new mongoose.Schema({

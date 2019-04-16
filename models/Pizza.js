@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const Ingredients = require('./Ingredient').default
+const Ingredients = require('./Ingredient')//.default
+
 
 const schema = new mongoose.Schema({
     name: {type:String, required:true, minlength:4, maxlength:64},
@@ -8,8 +9,8 @@ const schema = new mongoose.Schema({
            required:false, default:'small'},
     isGlutenFree: {type:Boolean, required: false, default:false},
     imageUrl: {type:String, required:false, maxlength:1024},
-    ingredients: {type: mongoose.Schema.Types.ObjectId, ref:'Ingredients'},
-    extraToppings: {type: mongoose.Schema.Types.ObjectId, ref:'Ingredients'}
+    ingredients: [{type: mongoose.Schema.Types.ObjectId, ref:'Ingredients'}],
+    extraToppings: [{type: mongoose.Schema.Types.ObjectId, ref:'Ingredients'}]
 })
 
 

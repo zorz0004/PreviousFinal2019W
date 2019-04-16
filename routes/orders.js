@@ -4,13 +4,13 @@ const authorize = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 
-router.get('/api/orders', authorize, async (req,res) => {
+router.get('/', authorize, async (req,res) => {
     const orders = await Order.find()
     res.send({ data: orders })
 })
 
-router.post('/api/orders', authorize, sanitizeBody, async (req,res) => {
-    let newOrder = new Order(req.sanitizeBody)
+router.post('/', authorize, sanitizeBody, async (req,res) => {
+    let newOrder = new Order(req.sanitizedBody)
     try{
         await newOrder.save()
         res.status(201).send({ data: newOrder })
@@ -19,7 +19,7 @@ router.post('/api/orders', authorize, sanitizeBody, async (req,res) => {
     }  
 })
 
-router.get('/api/orders/:id', authorize, async (req,res) => {
+router.get('/:id', authorize, async (req,res) => {
     try{
         const orders = await Order.findById(req.params.id).populate('pizzas')
         if(!orders)
@@ -30,11 +30,11 @@ router.get('/api/orders/:id', authorize, async (req,res) => {
     }
 })
 
-const update = (overwrite = false) => async (req, res) => {
+const update = (overwrite = false) => async (req, res, next) => {
     try{
         const orders = await Order.findByIdAndUpdate(
             req.params.id,
-            req.sanitizeBody,
+            req.sanitizedBody,
             {
                 new: true,
                 overwrite,
@@ -43,14 +43,15 @@ const update = (overwrite = false) => async (req, res) => {
         if (!orders) throw new Error('Resource not found')
         res.send({ data: orders })
     } catch (err) {
-        sendResourceNotFound(req, res)
+        next(err)
+        //sendResourceNotFound(req, res)
     }
 }
 
-router.put('/api/orders/:id', authorize, sanitizeBody, update((overwrite = true)))
-router.patch('/api/orders/:id', authorize, sanitizeBody, update((overwrite = false)))
+router.put('/:id', authorize, sanitizeBody, update((overwrite = true)))
+router.patch('/:id', authorize, sanitizeBody, update((overwrite = false)))
 
-router.delete('/api/orders/:id', authorize, async (req,res) => {
+router.delete('/:id', authorize, async (req,res) => {
     try {
         const orders = await Order.findByIdAndRemove(req.params.id)
         if (!orders) throw new Error ('Resource not found')

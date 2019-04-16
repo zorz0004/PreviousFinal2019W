@@ -1,5 +1,6 @@
 const sanitizeBody = require('../middleware/sanitizeBody')
 const Ingredient = require('../models/Ingredient')//.default
+const authorize = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 

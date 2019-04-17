@@ -10,7 +10,11 @@ const sanitizeBody = require("../../middleware/sanitizeBody")
 
 
 router.post('/users', sanitizeBody, async (req, res, next) => {
-    newUser = new User(req.sanitizedBody)
+    
+    const tmpUser = req.sanitizedBody
+    tmpUser.isStaff = false
+    //newUser = new User(req.sanitizedBody)
+    newUser = new User(tmpUser)
     .save()
     .then(newUser => res.status(201).send({data: newUser}))
     .catch(next)
@@ -42,20 +46,48 @@ router.get('/users/me', authorize, async (req, res) => {
     res.send({data: user})
   })
 
-  //update password
-  router.patch('/users/:id', authorize, sanitizeBody,  async (req, res, next) =>{
-      try{
-        const user = await User.findById(req.params.id)
-        user.password = req.sanitizedBody.password
-        await user.save()
-        res.send({data: user})
-      }
-      catch(err){
-          next(err)
-      }
-  })
 
-  
+router.patch('/users/:id', authorize, sanitizeBody,  async (req, res, next) =>{
+    //Update password
+    if(req.sanitizedBody.password != undefined){
+        try{
+            const user = await User.findById(req.params.id)
+            user.password = req.sanitizedBody.password
+            await user.save()
+            res.send({data: user})
+          }
+          catch(err){
+              next(err)
+          }
+    }
+    else{
+        //Update isStaff
+        let myUser = await User.findById(req.user._id).select('isStaff')
+        if(myUser.isStaff === true && req.sanitizedBody.isStaff != null){
+            try{
+                const user = await User.findById(req.params.id)
+                user.isStaff = req.sanitizedBody.isStaff
+                await user.save()
+                res.send({data: user})
+              }
+              catch(err){
+                  next(err)
+              }
+        }
+        else{
+            return res.status(403).send({
+                errors: [
+                    {
+                        status: 'Unauthorized',
+                        code: '403',
+                        title: 'Access denied',
+                        description: 'Not allowed'
+                    }
+                ]
+            })
+        }
+    }
+  })
 
 
 module.exports = router

@@ -1,10 +1,10 @@
 const sanitizeBody = require('../middleware/sanitizeBody')
 const Pizza = require('../models/Pizza')//.default
 const authorize = require('../middleware/auth')
+const User = require('../models/User')
 const express = require('express')
 const router = express.Router()
 
-const User = require('../models/User')
 
 
 router.get('/', async (req,res) => {

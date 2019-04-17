@@ -31,7 +31,7 @@ router.get('/:id', authorize, async (req,res) => {
     }
 })
 
-const update = (overwrite = false) => async (req, res, next) => {
+const update = (overwrite = false) => async (req, res) => {
     try{
         const orders = await Order.findByIdAndUpdate(
             req.params.id,
@@ -44,8 +44,8 @@ const update = (overwrite = false) => async (req, res, next) => {
         if (!orders) throw new Error('Resource not found')
         res.send({ data: orders })
     } catch (err) {
-        next(err)
-        //sendResourceNotFound(req, res)
+        //next(err)
+        sendResourceNotFound(req, res)
     }
 }
 

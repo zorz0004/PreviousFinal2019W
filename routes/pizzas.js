@@ -4,20 +4,28 @@ const authorize = require('../middleware/auth')
 const express = require('express')
 const router = express.Router()
 
+const User = require('../models/User')
+
 
 router.get('/', async (req,res) => {
     const pizzas = await Pizza.find()
     res.send({ data: pizzas })
 })
 
-router.post('/', sanitizeBody, async (req,res,next) => {
-    let newPizza = new Pizza(req.sanitizedBody)
-    try{
-        await newPizza.save()
-        res.status(201).send({ data: newPizza })
-    } catch (err) {
-        next(err)
-    }   
+router.post('/', authorize, sanitizeBody, async (req,res,next) => {
+    let myUser = await User.findById(req.user._id).select('isStaff')
+    if(myUser.isStaff === true){
+        let newPizza = new Pizza(req.sanitizedBody)
+        try{
+            await newPizza.save()
+            res.status(201).send({ data: newPizza })
+        } catch (err) {
+            next(err)
+        } 
+    } else{
+        sendUnauthorized (req, res)
+    }
+          
 })
 
 router.get('/:id', async (req,res) => {
@@ -32,34 +40,46 @@ router.get('/:id', async (req,res) => {
 })
 
 const update = (overwrite = false) => async (req, res, next) => {
-    try{
-        const pizzas = await Pizza.findByIdAndUpdate(
-            req.params.id,
-            req.sanitizedBody,
-            {
-                new: true,
-                overwrite,
-                runValidators: true
-            })
-        if (!pizzas) throw new Error('Resource not found')
-        res.send({ data: pizzas })
-    } catch (err) {
-        next(err)
-        //sendResourceNotFound(req, res)
-    }
+    let myUser = await User.findById(req.user._id).select('isStaff')
+    if(myUser.isStaff === true){
+        try{
+            const pizzas = await Pizza.findByIdAndUpdate(
+                req.params.id,
+                req.sanitizedBody,
+                {
+                    new: true,
+                    overwrite,
+                    runValidators: true
+                })
+            if (!pizzas) throw new Error('Resource not found')
+            res.send({ data: pizzas })
+        } catch (err) {
+            next(err)
+            //sendResourceNotFound(req, res)
+        }
+    }   
+     else{
+        sendUnauthorized (req, res)
+    }     
 }
 
-router.put('/:id', sanitizeBody, update((overwrite = true)))
-router.patch('/:id', sanitizeBody, update((overwrite = false)))
+router.put('/:id', authorize, sanitizeBody, update((overwrite = true)))
+router.patch('/:id', authorize, sanitizeBody, update((overwrite = false)))
 
-router.delete('/:id', async (req,res) => {
-    try {
-        const pizzas = await Pizza.findByIdAndRemove(req.params.id)
-        if (!pizzas) throw new Error ('Resource not found')
-        res.send({ data: pizzas })
-    }catch (err) {
-        sendResourceNotFound(req,res)
+router.delete('/:id', authorize, async (req,res) => {
+    let myUser = await User.findById(req.user._id).select('isStaff')
+    if(myUser.isStaff === true){
+        try {
+            const pizzas = await Pizza.findByIdAndRemove(req.params.id)
+            if (!pizzas) throw new Error ('Resource not found')
+            res.send({ data: pizzas })
+        }catch (err) {
+            sendResourceNotFound(req,res)
+        }
     }
+    else{
+        sendUnauthorized (req, res)
+    } 
 })
 
 //add function sendResourceNotFound 
@@ -77,5 +97,18 @@ function sendResourceNotFound (req, res) {
     })
   }
 
+
+function sendUnauthorized (req, res){
+    return res.status(403).send({
+        errors: [
+            {
+                status: 'Unauthorized',
+                code: '403',
+                title: 'Access denied',
+                description: 'Not allowed'
+            }
+        ]
+    })
+}
 
 module.exports = router

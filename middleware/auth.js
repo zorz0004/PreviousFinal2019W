@@ -1,12 +1,12 @@
 const config = require('config')
 const jwt = require('jsonwebtoken')
 const jwtPrivateKey = config.get('jwt.secretKey')
-//'superSecureSecret'
 
-function parseToken(header){
+
+const parseToken = function (header){
     if(header){
         const [type, token] = header.split(" ")
-        if(type == 'Bearer' && typeof token !== 'undefined'){
+        if(type === 'Bearer' && typeof token !== 'undefined'){
             return token
         } else{
             return undefined

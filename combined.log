@@ -150,3 +150,21 @@
 {"level":"info","message":"Connected to MongoDB ..."}
 {"level":"info","message":"Express is listening on port 3030 ..."}
 {"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"body":{"email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}

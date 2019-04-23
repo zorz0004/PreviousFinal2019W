@@ -1,6 +1,6 @@
 const config = require('config')
 const jwt = require('jsonwebtoken')
-const jwtPrivateKey = config.get("jwt.secretKey")
+const jwtPrivateKey = config.get('jwt.secretKey')
 //'superSecureSecret'
 
 function parseToken(header){

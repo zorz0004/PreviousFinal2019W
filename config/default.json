@@ -7,6 +7,6 @@
     },
     "jwt": {
         "saltRounds": 14,
-        "secretKey": "APP_JWTKEY" //remove from here before post to edumedia
+        "secretKey": "APP_JWTKEY"
     }
 }

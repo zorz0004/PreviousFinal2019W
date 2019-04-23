@@ -4,10 +4,16 @@ const mongoose = require('mongoose')
 
 const dbConfig = config.get('db')
 
+let credentials = ''
+
+if(process.env.NODE_ENV === 'production'){
+  credentials = `${dbConfig.user}:${dbConfig.password}@`
+}
+
 module.exports = () => {
   mongoose
     //.connect(`mongodb://localhost:27017/mad9124`, { 
-    .connect(`mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.dbName}`, {
+    .connect(`mongodb://${credentials}${dbConfig.host}:${dbConfig.port}/${dbConfig.dbName}?authSource=admin`,{
       useNewUrlParser: true }
     )
     .then(() => {

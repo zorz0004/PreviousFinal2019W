@@ -22,3 +22,18 @@
 {"level":"info","message":"Connected to MongoDB ..."}
 {"level":"info","message":"Express is listening on port 3030 ..."}
 {"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"password":"123456"},"level":"info","service":"user-service"}
+{"attributes":{"password":"123456"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"password":"123456"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}

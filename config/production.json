@@ -1,7 +1,7 @@
 {
     "db": {
         "host": "mongodb.mad9124.rocks",
-        "name": "final-zorz0004-tibu0004",
+        "dbName": "final-zorz0004-tibu0004",
         "user": "zorz0004-tibu0004",
         "password": "hus87zwuwkg8aa1wea1c0zm62ti5x1"
     }

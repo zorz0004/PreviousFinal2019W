@@ -102,3 +102,51 @@
 {"level":"info","message":"Connected to MongoDB ..."}
 {"level":"info","message":"Express is listening on port 3030 ..."}
 {"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"firstName":"Test","lastName":"Rosa","isStaff":"true","email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"firstName":"Test","lastName":"Rosa","isStaff":"true","email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"firstName":"Test","lastName":"Rosa","isStaff":"true","email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"body":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"tibu0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"body":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"email":"zorz0004@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"body":{"firstName":"Test","lastName":"Rosa","isStaff":"true","email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"attributes":{"firstName":"Test","lastName":"Rosa","isStaff":"true","email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"sanitizedBody":{"firstName":"Test","lastName":"Rosa","isStaff":"true","email":"test@algonquinlive.com","password":"12345"},"level":"info","service":"user-service"}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}
+{"level":"info","message":"Express is listening on port 3030 ..."}
+{"level":"info","message":"Connected to MongoDB ..."}

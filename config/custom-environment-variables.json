@@ -1,9 +1,9 @@
 {
-    "db": {
+  "db": {
       "userName": "APP_DBUSER",
       "password": "APP_DBPASSWORD"
-    },
-    "jwt": {
+  },
+  "jwt": {
       "secretKey": "APP_JWTKEY"
-    }
   }
+}

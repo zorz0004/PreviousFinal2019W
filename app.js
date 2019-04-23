@@ -3,9 +3,11 @@
 const logger = require('./startup/logger')
 require('./startup/database')()
 
+const compression = require('compression')
 const express = require('express')
 const app = express()
 
+app.use(compression())
 app.use(express.json())
 app.use(require('express-mongo-sanitize')())
 

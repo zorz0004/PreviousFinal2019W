@@ -5,11 +5,13 @@ require('./startup/database')()
 
 const compression = require('compression')
 const express = require('express')
+const helmet = require('helmet')
 const cors = require('cors')
 const app = express()
 
 app.use(compression())
 app.use(cors())
+app.use(helmet())
 app.use(express.json())
 app.use(require('express-mongo-sanitize')())
 

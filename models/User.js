@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const saltRounds = 14
 const validator = require('validator')
+const config = require('config')
+const jwtPrivateKey = config.get('jwt.secretKey')
 
 const schema = new mongoose.Schema({
   firstName: {type: String, trim: true, maxlength: 64, required: true},
@@ -57,7 +59,7 @@ schema.post('findByIdAndUpdate', function(doc){
 })
 
 const getAuthToken = schema.methods.generateAuthToken = function(){
-    return jwt.sign({_id: this._id}, 'superSecureSecret')
+    return jwt.sign({_id: this._id}, jwtPrivateKey)
 }
 
 schema.plugin(uniqueValidator,{
